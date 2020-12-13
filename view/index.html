@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <link href="index.css" rel="stylesheet">
+        <style>
+            #app{
+                margin-top: 10px;
+            }
+            #container{
+                display: flex;
+                justify-content: center;
+            }
+            .opt-box{
+                display: flex;
+                justify-content: center;
+            }
+            button{
+                border: none;
+                color: #FFF;
+                background: #040303;
+                padding: 5px 10px;
+                border-radius: 4px;
+                margin-right:15px;
+            }
+            .bottom{
+                display: flex;
+                justify-content: center;
+            }
+            .mask{
+                border: 0;
+                position: fixed;
+                top: 50%;
+                left: 40%;
+                transform: translateX(-50%) translateY(-50%);
+                z-index: 1000000;
+                transition: all .3s ease;       
+            }
+            .mask-con{
+                display: none;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: fixed;
+                margin: 0;
+                border-radius: 0;
+                background: rgba(17, 17, 17, 0.6);
+                transition: all 0.3s;
+                z-index: 100000;
+            }
+            .item{
+                display: inline-block;       
+            }
+            .item img{
+                width: 200px;
+                height: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app" v-cloak>
+            <div class="opt-box">
+                <p>操作说明:  上[W] 下[S] 左[A] 右[D]  开始 Enter 选择 Tap  攻击[J]  跳跃[k]<br/>
+                    操作无反应时检查下是否游戏界面失去焦点，鼠标左键点击确认游戏界面获得输入焦点即可
+                </p>
+            </div>
+            <div id="container">
+                <canvas id="nes-canvas" width="256" height="240" style="height: 512px;height: 480px;">
+                </canvas>
+            </div>
+            <div class="bottom" style="margin-top: 10px;">
+                <button onclick="changeGameColor()">切换模式</button>
+                <button onclick="showImgMask()">赞赏</button>
+            </div>
+            <div class="mask-con" id="imgMask" onclick="closeMask()">
+                <div class="mask" >
+                    <div class="item">
+                        <p>微信</p>
+                        <img src="img/wechat.png">
+                    </div>
+                    <div class="item">
+                        <p>支付宝</p>
+                        <img src="img/alipay.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src="jsnes.js"></script>
+    <!--<script src="vue.js"></script>-->
+    <script src="vscode.call.js"></script>
+    <script src="controller.js"></script>
+    <script src="main.js"></script>
+    <script>
+        window.onload = function(){
+            start();
+        }
+    </script>
+</html>

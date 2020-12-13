@@ -1,0 +1,129 @@
+{
+  "name": "anes",
+  "displayName": "小霸王",
+  "description": "vscode 小霸王",
+  "publisher": "gamedilong",
+  "version": "0.0.2",
+  "repository":"https://github.com/gamedilong/anes-repository",
+  "engines": {
+    "vscode": "^1.47.0"
+  },
+  "icon":"logo.png",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:anes.openGameBox",
+    "onCommand:anes.addRom",
+    "onCommand:anes.deleteRom",
+    "onCommand:anes.renameRom",
+    "onCommand:anes.downloadRom",
+    "onView:romLocal",
+    "onView:romRemote"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "anes.openGameBox",
+        "title": "openGameBox"
+      },
+      {
+        "command": "anes.addRom",
+        "title": "addRom",
+        "icon": "$(new-file)"
+      },
+      {
+        "command": "anes.refreshRemote",
+        "title": "refresh",
+        "icon": "$(search-refresh)"
+      },
+      {
+        "command": "anes.renameRom",
+        "title": "rename"
+      },
+      {
+        "command": "anes.deleteRom",
+        "title": "delete"
+      },
+      {
+        "command": "anes.downloadRom",
+        "title": "download"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "anes",
+          "title": "小霸王",
+          "icon": "resources/anes.svg"
+        }
+      ]
+    },
+    "views": {
+      "anes": [
+        {
+          "id": "romLocal",
+          "name": "local"
+        },
+        {
+          "id": "romRemote",
+          "name": "remote"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "anes.addRom",
+          "when": "view == romLocal",
+          "group": "navigation@1"
+        },
+        {
+          "command": "anes.refreshRemote",
+          "when": "view == romRemote",
+          "group": "navigation@1"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "anes.deleteRom",
+          "when": "view == romLocal",
+          "group": "anes@1"
+        },
+        {
+          "command": "anes.renameRom",
+          "when": "view == romLocal",
+          "group": "anes@1"
+        },
+        {
+          "command": "anes.downloadRom",
+          "when": "view == romRemote",
+          "group": "anes@2"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "dependencies": {
+    "compressing": "^1.5.1",
+    "jsnes": "git://github.com/bfirsh/jsnes.git",
+    "request": "^2.88.2",
+    "unzip": "^0.1.11"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^14.0.27",
+    "@types/vscode": "^1.47.0",
+    "eslint": "^7.6.0",
+    "glob": "^7.1.6",
+    "mocha": "^8.0.1",
+    "typescript": "^3.8.3",
+    "vscode-test": "^1.4.0"
+  }
+}
